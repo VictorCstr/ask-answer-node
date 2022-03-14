@@ -12,10 +12,32 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 app.get('/', (req,res) => {
-    Pergunta.findAll().then(perguntas => {
+    Pergunta.findAll({order:[
+        ['id', 'DESC']
+    ]}).then(perguntas => {
         res.render('index' , {perguntas})
+    }) 
+})
+
+app.get('/pergunta/:id' , (req,res) => {
+    let id = req.params.id
+    Pergunta.findOne({
+        where: {id}
+    }).then( pergunta => {
+        if(pergunta != undefined){
+            res.render('pergunta' , {pergunta})
+        }else{
+            res.redirect('/')
+        }
     })
-    
+})
+
+app.get('/minhasperguntas', (req,res) => {
+    Pergunta.findAll({order:[
+        ['id', 'DESC']
+    ]}).then(perguntas => {
+        res.render('minhasperguntas' , {perguntas})
+    }) 
 })
 
 app.get('/perguntar', (req,res) => {
