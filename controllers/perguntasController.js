@@ -37,6 +37,10 @@ const perguntaController = {
     retornarFormulario: (req,res) => {
         res.render('perguntar')
     },
+    
+    retornarPaginalogin: (req,res) => {
+        res.render('login')
+    },
 
     enviarFormularioPergunta: (req,res) => {
         let titulo = req.body.titulo
