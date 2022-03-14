@@ -1,15 +1,30 @@
 body{
-    background-color: #f5f0f0;
+    background-color: #fff;
 }
 
 .navbar{
-    background-color: rgb(255, 255, 255);
+    background-color: #F0F3F9;
+}
+
+.nav-item a {
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 #logo{
     width: 250px;
     height: 150px;
 }
+
 #ask{
     height: 200px;
+}
+
+#cards-perguntas:nth-child(odd){
+    background: #FFFFFF;
+}
+
+#cards-perguntas:nth-child(even){
+    background: #343A40;
+    color:#fff;
 }

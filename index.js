@@ -1,8 +1,9 @@
 const express = require('express');
 const db = require('./database/db')
-const app = express();
 const Pergunta = require('./models/Perguntas')
 
+
+const app = express();
 db.hasConection()
 
 app.set('view engine', 'ejs');
@@ -11,7 +12,10 @@ app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
 app.get('/', (req,res) => {
-    res.render('index')
+    Pergunta.findAll().then(perguntas => {
+        res.render('index' , {perguntas})
+    })
+    
 })
 
 app.get('/perguntar', (req,res) => {
@@ -20,8 +24,13 @@ app.get('/perguntar', (req,res) => {
 
 app.post('/salvarperguntas', (req,res) => {
     var titulo = req.body.titulo
-    var duvida = req.body.duvidas
-    res.send('Questionamento recebido! Titulo: ' + titulo + ' e a Descrição:' + duvida)
+    var descricao = req.body.duvidas
+    Pergunta.create({
+        titulo,
+        descricao
+    }) .then( () => {
+        res.status(201).redirect("/")
+    })
 })
 
 app.listen(8080, () => {
