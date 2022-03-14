@@ -7,9 +7,22 @@
             <div class="card-body">
               <h4 class="card-title"> <%= pergunta.titulo %></h4>
               <p class="card-text"> <%= pergunta.descricao %></p>
-              <a href="" class="btn btn-primary">Responder dúvida</a>
             </div>
-          </div>
+        </div>
+        <form action="/responder" method="post" class="my-5">
+            <h3>Mande sua resposta:</h3>
+            <textarea placeholder="Digite sua Resposta" class="form-control" name="resposta" id="ask"></textarea>
+            <input type="hidden" value="<%=pergunta.id%>" name="pergunta">
+            <button class="btn btn-primary mt-3" type="submit">Enviar resposta</button>
+        </form>
+        <h3>Todas as Respostas:</h3>
+        <% respostas.forEach( resposta => {  %>
+            <div class="card my-3">
+                <div class="card-body">
+                  <p class="card-text"> <%= resposta.resposta %></p>
+                </div>
+            </div>
+        <% }) %>
     </div>
     
     <%- include('partials/footer.ejs') -%>

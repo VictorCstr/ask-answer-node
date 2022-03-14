@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('./database/db')
 const Pergunta = require('./models/Perguntas')
+const Resposta = require('./models/Resposta')
 
 
 const app = express();
@@ -25,7 +26,12 @@ app.get('/pergunta/:id' , (req,res) => {
         where: {id}
     }).then( pergunta => {
         if(pergunta != undefined){
-            res.render('pergunta' , {pergunta})
+            Resposta.findAll({
+                where: {pergunta_id: id}
+            }).then(respostas =>{
+                res.render('pergunta' , {pergunta , respostas})
+            })
+           
         }else{
             res.redirect('/')
         }
@@ -45,13 +51,24 @@ app.get('/perguntar', (req,res) => {
 })
 
 app.post('/salvarperguntas', (req,res) => {
-    var titulo = req.body.titulo
-    var descricao = req.body.duvidas
+    let titulo = req.body.titulo
+    let descricao = req.body.duvidas
     Pergunta.create({
         titulo,
         descricao
     }) .then( () => {
         res.status(201).redirect("/")
+    })
+})
+
+app.post('/responder', (req,res) => {
+    let pergunta_id = req.body.pergunta;
+    let resposta = req.body.resposta;
+    Resposta.create({
+        resposta,
+        pergunta_id
+    }) .then( () => {
+        res.status(201).redirect('/pergunta/' + pergunta_id)
     })
 })
 
