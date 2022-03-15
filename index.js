@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('./database/db')
 const routes = require('./routes/index')
+const port = process.env.PORT || 8080
 
 const app = express();
 db.hasConection()
@@ -12,5 +13,5 @@ app.use(express.json());
 app.use(routes);
 
 app.listen(8080, () => {
-    console.log('Servidor rodando na porta 8080!');
+    console.log('Servidor rodando na porta ' + port);
 })
