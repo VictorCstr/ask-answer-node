@@ -25,9 +25,10 @@ const Perguntas = db.define(
                 Key: "id"
             }     
         }
+    }, 
+    {
+      tableName: "perguntas"
     }
 )
-
-Perguntas.sync({force:false}).then( () => {})
 
 module.exports = Perguntas;

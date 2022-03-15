@@ -47,7 +47,7 @@ const perguntaController = {
 
     enviarFormularioPergunta: (req,res) => {
         let titulo = req.body.titulo
-        let descricao = req.body.duvidas
+        let descricao = req.body.descricao
         Perguntas.create({
             titulo,
             descricao

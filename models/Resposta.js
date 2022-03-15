@@ -23,10 +23,12 @@ const Respostas = db.define(
             references: {
                 model: Usuarios,
                 Key: "id"
-            }     
+            } } 
+        }, 
+        {
+        tableName: "respostas"
         }
-    });
+    );
 
-Respostas.sync({force:false}).then( () => {})
 
 module.exports = Respostas;

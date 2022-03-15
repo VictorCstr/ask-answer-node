@@ -1,16 +1,16 @@
 <%- include('partials/header.ejs') -%>
 <body>
-    <%- include('partials/navbar.ejs') -%>
+    <%- include('partials/navbar-login.ejs') -%>
     <main id="main">
         <div class="container d-flex justify-content-center my-5">
                 <div class="col-md-5 login-form-2 ">
                     <h3><i class="bi bi-person-circle h1"></i></h3>
                     <form action="" method="post">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Digite seu email *" value="" />
+                            <input type="email" class="form-control" placeholder="Digite seu email *" value="" name="user_email" required/>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Digite sua senha *" value="" />
+                            <input type="password" class="form-control" placeholder="Digite sua senha *" value="" name="user_pass" required />
                         </div>
                         <div class="form-group d-flex flex-column align-items-center">
                             <input type="submit" class="btnSubmit text-md-center" value="Login" />

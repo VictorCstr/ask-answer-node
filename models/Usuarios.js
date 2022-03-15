@@ -20,10 +20,17 @@ const Usuarios = db.define(
         user_pass:{
             type: Sequelize.STRING,
             allowNull: false,
-        } 
+        },
+        createdAt:{
+          type: Sequelize.DATE
+        },
+        updatedAt:{
+          type: Sequelize.DATE
+        },
+    } , 
+    {
+      tableName: "usuarios"
     }
 )
-
-Usuarios.sync({force:false}).then( () => {})
 
 module.exports = Usuarios;
