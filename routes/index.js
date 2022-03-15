@@ -12,6 +12,7 @@ routes.get('/perguntar', perguntaController.retornarFormulario)
 routes.post('/perguntar',perguntaController.enviarFormularioPergunta)
 
 routes.get('/login', perguntaController.retornarPaginalogin)
+routes.get('/cadastrar', perguntaController.retornarPaginaCadastro)
 
 
 

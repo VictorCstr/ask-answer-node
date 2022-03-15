@@ -1,9 +1,8 @@
-const Pergunta = require('../models/Perguntas')
-const Resposta = require('../models/Resposta')
+const { Perguntas , Resposta } = require('../models/index')
 
 const perguntaController = {
     listarPerguntas : (req,res) => {
-         Pergunta.findAll({order:[
+         Perguntas.findAll({order:[
             ['id', 'DESC']
         ]}).then(perguntas => {
             res.render('index' , {perguntas})
@@ -12,7 +11,7 @@ const perguntaController = {
 
     listarUmaPergunta: (req,res) => {
         let id = req.params.id
-         Pergunta.findOne({
+         Perguntas.findOne({
             where: {id}
         }).then( pergunta => {
             if(pergunta != undefined){
@@ -27,7 +26,7 @@ const perguntaController = {
     },
 
     listarMinhasPerguntas: (req,res) => {
-        Pergunta.findAll({order:[
+        Perguntas.findAll({order:[
             ['id', 'DESC']
         ]}).then(perguntas => {
             res.render('minhasperguntas' , {perguntas})
@@ -42,10 +41,14 @@ const perguntaController = {
         res.render('login')
     },
 
+    retornarPaginaCadastro: (req,res) => {
+        res.render('cadastro')
+    },
+
     enviarFormularioPergunta: (req,res) => {
         let titulo = req.body.titulo
         let descricao = req.body.duvidas
-        Pergunta.create({
+        Perguntas.create({
             titulo,
             descricao
         }) .then( () => {
@@ -59,7 +62,7 @@ const perguntaController = {
             resposta,
             pergunta_id
         }) .then( () => {
-            res.status(201).redirect('/pergunta/' + pergunta_id)
+            res.status(201).redirect('/perguntas/' + pergunta_id)
         })
     }
 }

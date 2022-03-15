@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const Usuarios = require('./Usuarios')
 const db = require('../database/db')
 
 const Perguntas = db.define(
@@ -15,7 +16,15 @@ const Perguntas = db.define(
         descricao:{
             type: Sequelize.TEXT,
             allowNull: false,
-        }  
+        },
+        pergunta_userid:{
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: Usuarios,
+                Key: "id"
+            }     
+        }
     }
 )
 
