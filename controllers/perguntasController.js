@@ -59,7 +59,7 @@ const perguntaController = {
             resposta,
             pergunta_id
         }) .then( () => {
-            res.status(201).redirect('/pergunta/' + pergunta_id)
+            res.status(201).redirect('/perguntas/' + pergunta_id)
         })
     }
 }

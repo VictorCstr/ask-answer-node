@@ -4,7 +4,7 @@ let db = {}
 
 
     try { 
-        db = new Sequelize('projeto_perguntas', 'root', 'mysql',{
+        db = new Sequelize('projeto_perguntasv2', 'root', 'mysql',{
         dialect: "mysql",
         host:"localhost",
         port:3306
